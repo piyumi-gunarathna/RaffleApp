@@ -1,8 +1,7 @@
-﻿namespace RaffleApp
+﻿namespace RaffleApp;
+
+public interface ITicketNumbersGenerator
 {
-    public interface ITicketNumbersGenerator
-	{
-        List<int> GenerateTicketNumbers();
-    }
+    List<int> GenerateTicketNumbers();
 }
 

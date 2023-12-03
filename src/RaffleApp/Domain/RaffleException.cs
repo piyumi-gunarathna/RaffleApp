@@ -1,18 +1,17 @@
-﻿namespace RaffleApp
+﻿namespace RaffleApp;
+
+public class RaffleException : Exception
 {
-    public class RaffleException : Exception
+    public RaffleException() : base()
     {
-        public RaffleException() : base()
-        {
-        }
+    }
 
-        public RaffleException(string message) : base(message)
-        {
-        }
+    public RaffleException(string message) : base(message)
+    {
+    }
 
-        public RaffleException(string message, Exception innerException) : base(message, innerException)
-        {
+    public RaffleException(string message, Exception innerException) : base(message, innerException)
+    {
 
-        }
     }
 }
