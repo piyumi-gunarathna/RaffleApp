@@ -2,9 +2,9 @@
 {
     public class RaffleConsoleManager
     {
-        private readonly IRaffle raffle;
+        private readonly Raffle raffle;
 
-        public RaffleConsoleManager(IRaffle raffleDraw)
+        public RaffleConsoleManager(Raffle raffleDraw)
         {
             raffle = raffleDraw;
         }
@@ -131,7 +131,7 @@
                 if (PriceGroup == PriceGroup.None)
                     continue;
 
-                Console.WriteLine(Constants.GROUP_WINNERS, PriceGroup);
+                Console.WriteLine(Constants.GROUP_WINNERS, (int)PriceGroup);
                 if (groupWinners.ContainsKey(PriceGroup))
                     DisplayWinningUsers(groupWinners[PriceGroup]);
                 else

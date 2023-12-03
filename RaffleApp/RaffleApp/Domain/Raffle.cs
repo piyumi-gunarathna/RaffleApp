@@ -1,6 +1,6 @@
 ﻿namespace RaffleApp
 {
-    public class Raffle : IRaffle
+    public class Raffle
     {
         public double Pot { get; private set; }
         public bool IsInProgress { get; private set; }

@@ -3,8 +3,8 @@ using RaffleApp;
 
 IServiceCollection services = new ServiceCollection();
 services.AddSingleton<ITicketNumbersGenerator, TicketNumbersGenerator>();
-services.AddSingleton<IRaffle, Raffle>();
-services.AddSingleton< RaffleConsoleManager>();
+services.AddSingleton<Raffle>();
+services.AddSingleton<RaffleConsoleManager>();
 
 IServiceProvider serviceProvider = services.BuildServiceProvider();
 RaffleConsoleManager raffleConsoleManager = serviceProvider.GetRequiredService<RaffleConsoleManager>();

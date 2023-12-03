@@ -3,7 +3,7 @@ using Microsoft.VisualBasic;
 
 namespace RaffleApp
 {
-    public class TicketNumbersGenerator : ITicketNumbersGenerator
+    public class TicketNumbersGenerator: ITicketNumbersGenerator
     {
         private readonly Random random = new Random();
 
