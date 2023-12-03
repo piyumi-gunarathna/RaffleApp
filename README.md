@@ -1,6 +1,4 @@
-# *******************************************
 # Raffle App Information
-# *******************************************
 
 ## Description:
 This codebase comprises a raffle application developed for an upcoming event. The raffle system allows attendees to purchase tickets for participation in the draw. These tickets are linked to potential rewards based on the numbers matched in the draw.
