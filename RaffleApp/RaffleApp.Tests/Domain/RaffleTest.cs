@@ -1,8 +1,4 @@
-﻿using Xunit;
-using Moq;
-using System;
-using System.Collections.Generic;
-using RaffleApp; // Update with your appropriate namespace
+﻿using Moq;
 
 namespace RaffleApp.Tests;
 
