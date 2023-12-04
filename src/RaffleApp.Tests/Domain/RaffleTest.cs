@@ -112,4 +112,26 @@ public class RaffleTest
         Assert.Equal(6.5, winners[PriceGroup.Group2].First(w => w.Name == user3).amountWon);
         Assert.Equal(32.5, winners[PriceGroup.Group4].First(w => w.Name == user2).amountWon);
     }
+
+    [Fact]
+    public void Draw_Should_SetRemainingFundsToUseInNextDraw_When_DrawCompleted()
+    {
+        // Arrange
+        var numberGeneratorMock = new Mock<ITicketNumbersGenerator>();
+        numberGeneratorMock.SetupSequence(ng => ng.GenerateTicketNumbers())
+                           .Returns(new List<int> { 4, 7, 8, 13, 14 })
+                           .Returns(new List<int> { 1, 9, 2, 15, 5 })
+                           .Returns(new List<int> { 4, 7, 8, 13, 14 });
+
+        var raffle = new Raffle(numberGeneratorMock.Object);
+        raffle.StartRaffle();
+        raffle.SellTickets("James", 2);
+
+        // Act
+        raffle.Draw();
+
+        // Assert
+        Assert.True(raffle.RemainingFunds == 55);
+
+    }
 }
