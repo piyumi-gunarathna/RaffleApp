@@ -59,7 +59,7 @@ public class Raffle
         {
             throw new RaffleException(Constants.NO_TICKET_SOLD);
         }
-        WinningNumbers = ticketNumbersGenerator.GenerateUniqueNumbers();
+        WinningNumbers = ticketNumbersGenerator.GenerateTicketNumbers();
         SoldTickets.ForEach(ticket => ticket.SetPriceGroup(WinningNumbers));
         SetRemainingFunds();
         IsInProgress = false;
@@ -105,7 +105,7 @@ public class Raffle
     {
         var tickets = new List<Ticket>();
         for (int i = 0; i < numOfTickets; i++)
-            tickets.Add(new Ticket(ticketNumbersGenerator.GenerateUniqueNumbers(), user));
+            tickets.Add(new Ticket(ticketNumbersGenerator.GenerateTicketNumbers(), user));
 
         return tickets;
     }

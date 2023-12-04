@@ -41,6 +41,7 @@
         public const string RAFFLE_HAS_NOT_STARTED = "The raffle has not started yet.";
         public const string NO_TICKET_SOLD = "No tickets have been sold yet.";
         public const string EXCEEDS_TICKET_LIMIT = "Users can purchase up to a maximum of {0} tickets per draw.";
+        public const string INVALID_TICKET_NUM_COUNT = "Invalid ticket number count";
         #endregion
     }
 }

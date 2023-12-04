@@ -4,7 +4,7 @@
     {
         private readonly Random random = new Random();
 
-        public List<int> GenerateUniqueNumbers()
+        public List<int> GenerateTicketNumbers()
         {
             HashSet<int> uniqueNumbers = new HashSet<int>();
             while (uniqueNumbers.Count < Constants.NUMBERS_IN_TICKET)

@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 
 namespace RaffleApp.Tests;
 
@@ -16,7 +17,7 @@ public class RaffleAppIntegrationTest : IDisposable
         Console.SetOut(consoleOutput);
 
         var ticketGeneratorMock = new Mock<ITicketNumbersGenerator>();
-        ticketGeneratorMock.SetupSequence(ng => ng.GenerateUniqueNumbers())
+        ticketGeneratorMock.SetupSequence(ng => ng.GenerateTicketNumbers())
                             .Returns(new List<int> { 4, 7, 8, 13, 14 })
                             .Returns(new List<int> { 3, 6, 9, 11, 13 })
                             .Returns(new List<int> { 3, 7, 8, 11, 14 })
@@ -38,10 +39,10 @@ public class RaffleAppIntegrationTest : IDisposable
 
         // Assert for Option 1
         Assert.True(raffle.IsInProgress);
-        Assert.Equal(Constants.POT_SIZE, raffle.Pot);
+        Assert.Equal(Constants.POT_SIZE + raffle.RemainingFunds, raffle.Pot);
         Assert.Empty(raffle.SoldTickets);
         Assert.Empty(raffle.WinningNumbers);
-        Assert.Contains(string.Format(Constants.NEW_DRAW_STARTED, Constants.POT_SIZE), consoleOutput.ToString());
+        Assert.Contains(string.Format(Constants.NEW_DRAW_STARTED, Constants.POT_SIZE + raffle.RemainingFunds), consoleOutput.ToString());
 
         // Option 2: Buy Tickets user1 => James,1
         consoleInput = new StringReader("2\nJames,1");

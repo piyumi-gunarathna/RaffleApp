@@ -26,7 +26,7 @@ public class RaffleTest
     {
         // Arrange
         var numberGeneratorMock = new Mock<ITicketNumbersGenerator>();
-        numberGeneratorMock.SetupSequence(ng => ng.GenerateUniqueNumbers())
+        numberGeneratorMock.SetupSequence(ng => ng.GenerateTicketNumbers())
                            .Returns(new List<int> { 4, 7, 8, 13, 14 })
                            .Returns(new List<int> { 3, 6, 9, 11, 13 })
                            .Returns(new List<int> { 2, 5, 10, 9, 14 });
@@ -55,7 +55,7 @@ public class RaffleTest
     {
         // Arrange
         var numberGeneratorMock = new Mock<ITicketNumbersGenerator>();
-        numberGeneratorMock.SetupSequence(ng => ng.GenerateUniqueNumbers())
+        numberGeneratorMock.SetupSequence(ng => ng.GenerateTicketNumbers())
                            .Returns(new List<int> { 4, 7, 8, 13, 14 })
                            .Returns(new List<int> { 3, 6, 9, 11, 13 });
 
@@ -76,7 +76,7 @@ public class RaffleTest
     {
         // Arrange
         var numberGeneratorMock = new Mock<ITicketNumbersGenerator>();
-        numberGeneratorMock.SetupSequence(ng => ng.GenerateUniqueNumbers())
+        numberGeneratorMock.SetupSequence(ng => ng.GenerateTicketNumbers())
                            .Returns(new List<int> { 4, 7, 8, 13, 14 })
                            .Returns(new List<int> { 3, 6, 9, 11, 13 })
                            .Returns(new List<int> { 3, 7, 8, 11, 14 })
