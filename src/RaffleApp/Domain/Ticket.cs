@@ -4,10 +4,10 @@ public class Ticket
 {
     public List<int> Numbers { get; }
     public string UserName { get; }
-    public PriceGroup PriceGroup { get; set; }
+    public PriceGroup PriceGroup { get; private set; }
 
     public Ticket(List<int> numbers, string userName)
-    {
+    {// TODO: validate numbers.length = 5, username isNullOrEmptyString
         Numbers = numbers ?? throw new ArgumentNullException(nameof(numbers));
         UserName = userName ?? throw new ArgumentNullException(nameof(userName));
     }

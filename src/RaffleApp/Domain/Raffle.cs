@@ -1,8 +1,11 @@
-﻿namespace RaffleApp;
+﻿using System.Collections.Generic;
+
+namespace RaffleApp;
 
 public class Raffle
 {
     public double Pot { get; private set; }
+    public double RemainingFunds { get; private set; }
     public bool IsInProgress { get; private set; }
     public List<Ticket> SoldTickets { get; private set; }
     public List<int> WinningNumbers { get; private set; }
@@ -21,12 +24,13 @@ public class Raffle
         SoldTickets = new List<Ticket>();
         WinningNumbers = new List<int>();
         ticketNumbersGenerator = numberGenerator;
+        Pot = Constants.POT_SIZE;
     }
 
     public void StartRaffle()
     {
         IsInProgress = true;
-        Pot = Constants.POT_SIZE;
+        Pot = Constants.POT_SIZE + RemainingFunds;
         SoldTickets.Clear();
         WinningNumbers.Clear();
     }
@@ -50,19 +54,19 @@ public class Raffle
     {
         if (!IsInProgress)
             throw new RaffleException(Constants.RAFFLE_HAS_NOT_STARTED);
+
         if (SoldTickets.Count == 0)
         {
             throw new RaffleException(Constants.NO_TICKET_SOLD);
         }
-
-        WinningNumbers = ticketNumbersGenerator.GenerateTicketNumbers();
+        WinningNumbers = ticketNumbersGenerator.GenerateUniqueNumbers();
+        SoldTickets.ForEach(ticket => ticket.SetPriceGroup(WinningNumbers));
+        SetRemainingFunds();
         IsInProgress = false;
     }
 
     public Dictionary<PriceGroup, List<ResultRecord>> GetWinners()
     {
-        SoldTickets.ForEach(ticket => ticket.SetPriceGroup(WinningNumbers));
-
         var groupedWinners = SoldTickets
             .Where(ticket => ticket.PriceGroup != PriceGroup.None)
             .GroupBy(ticket => ticket.PriceGroup)
@@ -81,11 +85,27 @@ public class Raffle
         return groupedWinners;
     }
 
+    private void SetRemainingFunds()
+    {
+        var winningGroups = SoldTickets
+            .Where(ticket => ticket.PriceGroup != PriceGroup.None)
+            .Select(ticket => ticket.PriceGroup)
+            .Distinct().ToList();
+
+        double totalWinningPercentage = 0;
+        foreach (PriceGroup group in winningGroups)
+        {
+            totalWinningPercentage += rewardPercentages[group];
+        }
+
+        RemainingFunds = Pot - Pot * totalWinningPercentage;
+    }
+
     private List<Ticket> GenerateTickets(int numOfTickets, string user)
     {
         var tickets = new List<Ticket>();
         for (int i = 0; i < numOfTickets; i++)
-            tickets.Add(new Ticket(ticketNumbersGenerator.GenerateTicketNumbers(), user));
+            tickets.Add(new Ticket(ticketNumbersGenerator.GenerateUniqueNumbers(), user));
 
         return tickets;
     }

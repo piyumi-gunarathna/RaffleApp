@@ -16,7 +16,7 @@ public class RaffleAppIntegrationTest : IDisposable
         Console.SetOut(consoleOutput);
 
         var ticketGeneratorMock = new Mock<ITicketNumbersGenerator>();
-        ticketGeneratorMock.SetupSequence(ng => ng.GenerateTicketNumbers())
+        ticketGeneratorMock.SetupSequence(ng => ng.GenerateUniqueNumbers())
                             .Returns(new List<int> { 4, 7, 8, 13, 14 })
                             .Returns(new List<int> { 3, 6, 9, 11, 13 })
                             .Returns(new List<int> { 3, 7, 8, 11, 14 })

@@ -9,7 +9,7 @@ public class TicketNumbersGeneratorTest
         var ticketNumbersGenerator = new TicketNumbersGenerator();
 
         // Act
-        List<int> ticketNumbers = ticketNumbersGenerator.GenerateTicketNumbers();
+        List<int> ticketNumbers = ticketNumbersGenerator.GenerateUniqueNumbers();
 
         // Assert
         Assert.NotNull(ticketNumbers);
@@ -23,8 +23,8 @@ public class TicketNumbersGeneratorTest
         var ticketNumbersGenerator = new TicketNumbersGenerator();
 
         // Act
-        List<int> ticketNumbers1 = ticketNumbersGenerator.GenerateTicketNumbers();
-        List<int> ticketNumbers2 = ticketNumbersGenerator.GenerateTicketNumbers();
+        List<int> ticketNumbers1 = ticketNumbersGenerator.GenerateUniqueNumbers();
+        List<int> ticketNumbers2 = ticketNumbersGenerator.GenerateUniqueNumbers();
 
         // Assert
         Assert.NotEqual(ticketNumbers1, ticketNumbers2);
@@ -37,7 +37,7 @@ public class TicketNumbersGeneratorTest
         var ticketNumbersGenerator = new TicketNumbersGenerator();
 
         // Act
-        List<int> ticketNumbers = ticketNumbersGenerator.GenerateTicketNumbers();
+        List<int> ticketNumbers = ticketNumbersGenerator.GenerateUniqueNumbers();
 
         // Assert
         Assert.NotNull(ticketNumbers);

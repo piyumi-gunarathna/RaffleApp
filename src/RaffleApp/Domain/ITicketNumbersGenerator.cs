@@ -2,6 +2,6 @@
 
 public interface ITicketNumbersGenerator
 {
-    List<int> GenerateTicketNumbers();
+    List<int> GenerateUniqueNumbers();
 }
 
