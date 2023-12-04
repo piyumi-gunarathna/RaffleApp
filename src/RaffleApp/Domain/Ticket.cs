@@ -7,9 +7,16 @@ public class Ticket
     public PriceGroup PriceGroup { get; private set; }
 
     public Ticket(List<int> numbers, string userName)
-    {// TODO: validate numbers.length = 5, username isNullOrEmptyString
-        Numbers = numbers ?? throw new ArgumentNullException(nameof(numbers));
-        UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+    {
+        if (numbers == null)
+            throw new ArgumentNullException(nameof(numbers));
+        if (string.IsNullOrWhiteSpace(userName))
+            throw new ArgumentNullException(nameof(userName));
+        if (numbers.Count != Constants.NUMBERS_IN_TICKET)
+            throw new RaffleException(Constants.INVALID_TICKET_NUM_COUNT);
+
+        Numbers = numbers;
+        UserName = userName;
     }
 
     public void SetPriceGroup(List<int> winningNumbers)
